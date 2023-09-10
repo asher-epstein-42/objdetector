@@ -17,6 +17,7 @@ Usage:
 Installation: Before running the script, make sure to install the required packages using pip:
 
 pip install ultralytics
+
 pip install opencv-python
 
 Specify the object you want to search for.
