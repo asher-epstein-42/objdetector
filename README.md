@@ -10,7 +10,14 @@ Allows users to specify the object of interest.
 Provides options for verbose mode (detailed output) and image display during the search.
 Offers an advanced search option for increased accuracy (at the cost of longer processing time).
 Automatically creates a folder to store the extracted object screenshots.
+
+
+
 Usage:
+Installation: Before running the script, make sure to install the required packages using pip:
+
+pip install ultralytics
+pip install opencv-python
 
 Specify the object you want to search for.
 Provide the directory path where you want to perform the search.
