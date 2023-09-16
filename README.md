@@ -27,9 +27,13 @@ pip install opencv-python
 ```bash
 python objdetector.py [-h] [-v] [-s] [-a] object dir_path
 ```
+### Usage
 
-object_to_search: The object you want to detect and extract screenshots of.
-directory_path: The directory where the tool will search for PNG images.
--v (optional): Enables verbose mode for detailed output.
--s (optional): Displays images while searching.
--a (optional): Enables advanced search mode for improved accuracy.
+- `object_to_search`: The object you want to detect and extract screenshots of.
+- `directory_path`: The directory where the tool will search for PNG images.
+
+### Optional Flags
+
+- `-v`: Enables verbose mode for detailed output.
+- `-s`: Displays images while searching.
+- `-a`: Enables advanced search mode for improved accuracy.
