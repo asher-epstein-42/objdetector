@@ -20,11 +20,13 @@ Before running the script, ensure that you have installed the necessary packages
 ```bash
 pip install ultralytics
 pip install opencv-python
+```
 
 ### Running the Script
 
 ```bash
 python objdetector.py [-h] [-v] [-s] [-a] object dir_path
+```
 
 object_to_search: The object you want to detect and extract screenshots of.
 directory_path: The directory where the tool will search for PNG images.
