@@ -1,6 +1,6 @@
 # Object Detection and Screenshot Generation Tool
 
-This Python script is designed to streamline object detection using the Ultralytics YOLO framework within a directory containing PNG image files. It identifies a user-specified object of interest and captures screenshots of the detected objects, storing them in a designated folder. This tool is versatile and can be used for various purposes, such as data annotation and content analysis.
+This Python script is designed to streamline object detection using the Ultralytics YOLO framework within a directory containing image files. It identifies a user-specified object of interest and captures screenshots of the detected objects, storing them in a designated folder. This tool is versatile and can be used for various purposes, such as data annotation and content analysis.
 
 ## Key Features
 
