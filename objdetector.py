@@ -2,20 +2,22 @@ from ultralytics import YOLO
 import cv2
 import os
 import argparse
-from consts import NAMES
+from consts import NAMES, IMAGE_TYPES
 
 
 def main():
     object_to_search, dir_path, verbose, show, advanced = menu(NAMES)
     if object_to_search not in NAMES.values():
         exit_program()
+    output_folder = create_folder(object_to_search)
     screenshots_count = 0
 
     # Search recursively png files in folder
     for foldername, subfolders, filenames in os.walk(dir_path):
         for filename in filenames:
             file_path = os.path.join(foldername, filename)
-            if filename.endswith(".png"):
+
+            if filename.endswith(IMAGE_TYPES):
                 # Load the chosen YOLO model
                 if advanced:
                     model = YOLO('yolov8l.pt')
@@ -26,7 +28,7 @@ def main():
                 else:
                     results = model(f"{file_path}")
 
-                output_folder = create_folder(object_to_search)
+
 
                 # Load the input image
                 img = cv2.imread(file_path)
@@ -67,7 +69,6 @@ def main():
                     # Print the total number of object screenshots taken for each image in verbose mode
                     if verbose:
                         print(f"Total {object_counter - 1}  {object_to_search} screenshots taken from {file_path}.")
-                # cv2.waitKey(0)
                 cv2.destroyAllWindows()
     print(f"\nTotal {screenshots_count} screenshots were created in {output_folder}")
 
@@ -98,6 +99,8 @@ def exit_program():
     print("Invalid object option")
     print("Exit")
     exit()
+
+
 
 
 if __name__ == '__main__':
