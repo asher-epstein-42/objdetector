@@ -25,7 +25,7 @@ pip install opencv-python
 ### Running the Script
 
 ```bash
-python objdetector.py [-h] [-v] [-s] [-a] object dir_path
+python objdetector.py [-h] [-v] [-s] [-a] [-c] object dir_path
 ```
 ### Usage
 
@@ -37,3 +37,4 @@ python objdetector.py [-h] [-v] [-s] [-a] object dir_path
 - `-v`: Enables verbose mode for detailed output.
 - `-s`: Displays images while searching.
 - `-a`: Enables advanced search mode for improved accuracy.
+- `-c` store a copy of the original image.
