@@ -38,3 +38,6 @@ python objdetector.py [-h] [-v] [-s] [-a] [-c] object dir_path
 - `-s`: Displays images while searching.
 - `-a`: Enables advanced search mode for improved accuracy.
 - `-c` store a copy of the original image.
+
+### Supported file types
+bmp, dng, jpe, jpg, mpo, png, tif, tiff, webp, pfm
