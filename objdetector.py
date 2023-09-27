@@ -2,15 +2,16 @@ from ultralytics import YOLO
 import cv2
 import os
 import argparse
+import shutil
 from consts import NAMES, IMAGE_TYPES
 
 
 def main():
-    object_to_search, dir_path, verbose, show, advanced = menu(NAMES)
+    object_to_search, dir_path, verbose, show, advanced, copy = menu(NAMES)
     if object_to_search not in NAMES.values():
         exit_program()
     output_folder = create_folder(object_to_search)
-    screenshots_count = 0
+    object_image_count = 0
 
     # Search recursively png files in folder
     for foldername, subfolders, filenames in os.walk(dir_path):
@@ -60,17 +61,26 @@ def main():
                                 screenshot_path = os.path.join(output_folder, screenshot_filename)
 
                                 # Save the screenshot
-                                cv2.imwrite(screenshot_path, object_roi)
+                                if copy:
+                                    shutil.copy(file_path, output_folder)
+                                else:
+                                    cv2.imwrite(screenshot_path, object_roi)
 
                                 # Increment the object and screenshot counter
                                 object_counter += 1
-                                screenshots_count += 1
+                                object_image_count += 1
 
                     # Print the total number of object screenshots taken for each image in verbose mode
                     if verbose:
-                        print(f"Total {object_counter - 1}  {object_to_search} screenshots taken from {file_path}.")
+                        if copy:
+                            print(f"Total {object_counter - 1}  images with a {object_to_search} found in{file_path}.")
+                        else:
+                            print(f"Total {object_counter - 1}  {object_to_search} screenshots taken from {file_path}.")
                 cv2.destroyAllWindows()
-    print(f"\nTotal {screenshots_count} screenshots were created in {output_folder}")
+    if copy:
+        print(f"\nTotal {object_image_count} images with a {object_to_search} were copied to {output_folder}")
+    else:
+        print(f"\nTotal {object_image_count} screenshots were created in {output_folder}")
 
 
 def create_folder(Item_to_search):
@@ -91,8 +101,10 @@ def menu(NAMES: dict):
                         help="show each image while searching")
     parser.add_argument("-a", "--advanced", action="store_true",
                         help="advanced search, might take more time")
+    parser.add_argument("-c", "--copy", action="store_true",
+                        help="store a copy of the original image")
     args = parser.parse_args()
-    return args.object, args.dir_path, args.verbose, args.show, args.advanced
+    return args.object, args.dir_path, args.verbose, args.show, args.advanced, args.copy
 
 
 def exit_program():
